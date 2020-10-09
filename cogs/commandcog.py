@@ -50,15 +50,11 @@ class CommandCog(commands.Cog):
         with open("data/commands.json", "r") as f:
             commands = json.load(f)
 
-        desc = ""
-
-        for k, v in commands.items():
-            desc += k + "\n"
+        desc = "\n".join([k for k in commands.keys()])
 
         embed = discord.Embed(title="Custom Commands", description=desc, color=0xFF0000)
-        
-        await ctx.send(embed=embed)
 
+        await ctx.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message(self, msg):

@@ -47,11 +47,14 @@ class LogCog(commands.Cog):
             channel_id = config_dict["logChannel"]
             channel_obj = await self.bot.fetch_channel(channel_id)
 
-        embed = discord.Embed(title=message_before.author.name, description="Message Edit", color=0xFF0000)
+        embed = discord.Embed(
+            title=message_before.author.name, description="Message Edit", color=0xFF0000
+        )
         embed.add_field(name="Before", value=message_before.content, inline=False)
         embed.add_field(name="After", value=message_after.content, inline=True)
 
         await channel_obj.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(LogCog(bot))
